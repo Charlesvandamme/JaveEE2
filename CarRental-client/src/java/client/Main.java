@@ -79,7 +79,7 @@ public class Main extends AbstractTestManagement<CarRentalSessionRemote, Manager
     public void addCarRentalCompany(ManagerSessionRemote ms, CarRentalCompany crc) {
         ms.addCarRentalCompany(crc);
     }
-    public void addCarRentalCompany(ManagerSessionRemote ms, Car car, CarRentalCompany crc) {
-        ms.addCarToCompany(car, crc);
+    public void addCarRentalCompany(ManagerSessionRemote ms, CarRentalCompany crc, Car car) {
+        ms.addCarToCompany(crc, car);
     }
 }

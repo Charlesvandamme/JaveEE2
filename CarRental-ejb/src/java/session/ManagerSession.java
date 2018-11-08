@@ -21,6 +21,11 @@ public class ManagerSession implements ManagerSessionRemote {
     @PersistenceContext
     EntityManager em; // container managed entity manager
     
+    public List<CarRentalCompany> lookUpAllRentalCompanies() {
+        return em.createQuery("SELECT company FROM CarRentalCompany company").getResultList();
+    }
+    
+    
     @Override
     public Set<CarType> getCarTypes(String company) {
         try {
