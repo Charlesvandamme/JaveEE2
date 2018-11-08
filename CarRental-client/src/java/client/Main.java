@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.naming.InitialContext;
+import rental.Car;
+import rental.CarRentalCompany;
 import rental.CarType;
 import rental.Reservation;
 import rental.ReservationConstraints;
@@ -18,7 +20,8 @@ public class Main extends AbstractTestManagement<CarRentalSessionRemote, Manager
 
     public static void main(String[] args) throws Exception {
         // TODO: use updated manager interface to load cars into companies
-        new Main("trips").run();
+        Main main = new Main("trips");
+        main.run();
     }
 
     @Override
@@ -43,7 +46,8 @@ public class Main extends AbstractTestManagement<CarRentalSessionRemote, Manager
 
     @Override
     protected ManagerSessionRemote getNewManagerSession(String name, String carRentalName) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ManagerSessionRemote ms = (ManagerSessionRemote) (new InitialContext()).lookup(ManagerSessionRemote.class.getName());
+        return ms;
     }
 
     @Override
@@ -69,5 +73,13 @@ public class Main extends AbstractTestManagement<CarRentalSessionRemote, Manager
     @Override
     protected int getNumberOfReservationsForCarType(ManagerSessionRemote ms, String carRentalName, String carType) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    // added 
+    public void addCarRentalCompany(ManagerSessionRemote ms, CarRentalCompany crc) {
+        ms.addCarRentalCompany(crc);
+    }
+    public void addCarRentalCompany(ManagerSessionRemote ms, Car car, CarRentalCompany crc) {
+        ms.addCarToCompany(car, crc);
     }
 }
