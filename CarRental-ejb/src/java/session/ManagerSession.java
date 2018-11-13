@@ -12,7 +12,6 @@ import javax.persistence.PersistenceContext;
 import rental.Car;
 import rental.CarRentalCompany;
 import rental.CarType;
-import rental.RentalStore;
 import rental.Reservation;
 import java.sql.*;
 import javax.persistence.Query;
@@ -20,11 +19,11 @@ import javax.persistence.Query;
 @Stateless
 public class ManagerSession implements ManagerSessionRemote {
     
-    @PersistenceContext
+    @PersistenceContext(unitName = "CarRental-ejbPU")
     EntityManager em; // container managed entity manager
     
     public List<CarRentalCompany> lookUpAllRentalCompanies() {
-        return em.createQuery("SELECT company FROM CarRentalCompany company").getResultList();
+        return em.createQuery("SELECT name FROM CarRentalCompany name").getResultList();
     }
     
     
